@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Legacy</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #0d1117;
+      color: white;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #161b22;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      gap: 1.5rem;
+    }
+
+    .navbar ul li a {
+      color: white;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #00d4ff;
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+      background: linear-gradient(90deg, #1f2937, #2d3748);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel .carousel-item {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.8s ease;
+      font-size: 2rem;
+      color: #00d4ff;
+      text-align: center;
+    }
+
+    .carousel .carousel-item.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Futuristic Cards */
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      padding: 3rem;
+      background: #161b22;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #1a202c, #23272e);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 28%;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 212, 255, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+
+    .card i {
+      font-size: 4rem;
+      color: #00d4ff;
+      margin-bottom: 1rem;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #cbd5e0;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Futuristic Button */
+    .card .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: #00d4ff;
+      border: 1px solid #00d4ff;
+      border-radius: 25px;
+      background: transparent;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+
+    .card .btn:hover {
+      background: #00d4ff;
+      color: #0d1117;
+      box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+    }
+
+    /* Glow Animation */
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.6), 0 0 20px rgba(0, 212, 255, 0.4);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 40px rgba(0, 212, 255, 0.6);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">SPORTS LEGACY</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Carousel -->
+  <div class="carousel">
+    <div class="carousel-item active">Welcome to our website Sports Legacy</div>
+    <div class="carousel-item">Experience Sports deeply</div>
+    <div class="carousel-item"> This website is made by Rehan Shaikh </div>
+  </div>
+
+  <!-- Futuristic Cards Section -->
+  
+  
+  <div class="card-container">
+    <div class="card">
+      <i class="fas fa-robot"></i>
+      <h3> Cricket</h3>
+      <p>Cricket is a bat and ball game with two teams wit 11 player each etc.</p>
+      <a href="http://127.0.0.1:3000/cricketLegacy/cricket.html"><button class="btn">Learn More</button></a>
+    </div>
+    <div class="card">
+      <i class="fas fa-globe"></i>
+      <h3>Football</h3>
+      <p>Football is is a ball game played with foot and two goals , two teams etc.</p>
+      <a href="http://127.0.0.1:3000/testing.html"><button class="btn">Learn More</button></a>
+    </div>
+    <div class="card">
+      <i class="fas fa-space-shuttle"></i>
+      <h3>Basketball</h3>
+      <p>Basket ball is also a ball game played with 2 teams and two baskets.</p>
+      <a src=""><button class="btn">Learn More</button></a>
+    </div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const carouselItems = document.querySelectorAll('.carousel-item');
+
+    function showNextSlide() {
+      carouselItems[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      carouselItems[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 3000);
+  </script>
+</body>
+</html>
+
+
+
+

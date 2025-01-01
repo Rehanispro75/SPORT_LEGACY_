@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Football Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F2F2;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #2D3436;
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .answers {
+            list-style: none;
+            padding: 0;
+        }
+
+        .answers li {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .answers li:hover {
+            background-color: #27ae60;
+        }
+
+        .answers li.correct {
+            background-color: #2ecc71 !important;
+        }
+
+        .answers li.incorrect {
+            background-color: #e74c3c !important;
+        }
+
+        .btn-next {
+            display: block;
+            background-color: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 18px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .btn-next:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 30px;
+            color: #333;
+            display: none;
+        }
+
+        .final-score {
+            font-size: 40px;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .question {
+                font-size: 20px;
+            }
+
+            .answers li {
+                font-size: 18px;
+            }
+
+            .btn-next {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="quiz-header">
+        <h1>Football Quiz</h1>
+        <p>Test your knowledge of football with this quiz.</p>
+    </div>
+
+    <div class="quiz-content">
+        <div class="question-container">
+            <p class="question">Question 1: Who won the FIFA World Cup in 2018?</p>
+            <ul class="answers">
+                <li onclick="checkAnswer(this, 'correct')">France</li>
+                <li onclick="checkAnswer(this, 'incorrect')">Germany</li>
+                <li onclick="checkAnswer(this, 'incorrect')">Brazil</li>
+                <li onclick="checkAnswer(this, 'incorrect')">Spain</li>
+            </ul>
+        </div>
+
+        <button class="btn-next" onclick="nextQuestion()">Next Question</button>
+    </div>
+
+    <div class="result">
+        <p>Your Score: <span class="final-score" id="score">0</span>/10</p>
+        <button class="btn-next" onclick="startOver()">Start Over</button>
+    </div>
+</div>
+
+<audio id="winSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+<script>
+    let currentQuestion = 0;
+    let score = 0;
+    const totalQuestions = 10;
+    const questions = [
+        {
+            question: "Who won the FIFA World Cup in 2018?",
+            options: ["France", "Germany", "Brazil", "Spain"],
+            correct: "France"
+        },
+        {
+            question: "Who is the all-time top scorer in the Premier League?",
+            options: ["Wayne Rooney", "Sergio Aguero", "Harry Kane", "Alan Shearer"],
+            correct: "Alan Shearer"
+        },
+        {
+            question: "Which country is known as the 'Home of Football'?",
+            options: ["Germany", "Brazil", "England", "Argentina"],
+            correct: "England"
+        },
+        {
+            question: "Who has the most Ballon d'Or wins?",
+            options: ["Lionel Messi", "Cristiano Ronaldo", "Zinedine Zidane", "Neymar"],
+            correct: "Lionel Messi"
+        },
+        {
+            question: "Which club has won the most UEFA Champions League titles?",
+            options: ["FC Barcelona", "Real Madrid", "Bayern Munich", "AC Milan"],
+            correct: "Real Madrid"
+        },
+        {
+            question: "Which country hosted the 2014 FIFA World Cup?",
+            options: ["Brazil", "Germany", "South Africa", "Russia"],
+            correct: "Brazil"
+        },
+        {
+            question: "Who is known as the 'Egyptian King' in football?",
+            options: ["Mohamed Salah", "Ahmed Hegazi", "Trezeguet", "Mahmoud Hassan"],
+            correct: "Mohamed Salah"
+        },
+        {
+            question: "Which team is known as the 'Red Devils'?",
+            options: ["Manchester City", "Liverpool", "Manchester United", "Chelsea"],
+            correct: "Manchester United"
+        },
+        {
+            question: "Who is the highest-paid footballer in the world as of 2023?",
+            options: ["Cristiano Ronaldo", "Lionel Messi", "Kylian Mbappé", "Neymar"],
+            correct: "Cristiano Ronaldo"
+        },
+        {
+            question: "Which player is known as the 'Portuguese Magician'?",
+            options: ["Cristiano Ronaldo", "João Moutinho", "Bernardo Silva", "Rui Costa"],
+            correct: "Bernardo Silva"
+        }
+    ];
+
+    function loadQuestion() {
+        const questionContainer = document.querySelector(".question-container");
+        const questionElement = questionContainer.querySelector(".question");
+        const answersList = questionContainer.querySelector(".answers");
+
+        const current = questions[currentQuestion];
+        questionElement.textContent = `Question ${currentQuestion + 1}: ${current.question}`;
+        answersList.innerHTML = '';
+
+        current.options.forEach(option => {
+            const li = document.createElement("li");
+            li.textContent = option;
+            li.setAttribute('onclick', `checkAnswer(this, '${option === current.correct ? 'correct' : 'incorrect'}')`);
+            answersList.appendChild(li);
+        });
+    }
+
+    function checkAnswer(selected, answerType) {
+        const selectedAnswer = selected;
+        const answers = selected.parentElement.querySelectorAll('li');
+        answers.forEach(ans => ans.classList.remove('correct', 'incorrect'));
+
+        if (answerType === 'correct') {
+            score++;
+            selected.classList.add('correct');
+        } else {
+            selected.classList.add('incorrect');
+        }
+
+        // Disable further clicks
+        answers.forEach(ans => ans.style.pointerEvents = 'none');
+    }
+
+    function nextQuestion() {
+        if (currentQuestion < totalQuestions - 1) {
+            currentQuestion++;
+            loadQuestion();
+        } else {
+            displayResult();
+        }
+    }
+
+    function displayResult() {
+        const quizContent = document.querySelector('.quiz-content');
+        const result = document.querySelector('.result');
+        const scoreElement = document.getElementById('score');
+        quizContent.style.display = 'none';
+        result.style.display = 'block';
+        scoreElement.textContent = score;
+
+        // Play winning sound if score is perfect
+        if (score === totalQuestions) {
+            document.getElementById('winSound').play();
+        }
+    }
+
+    function startOver() {
+        currentQuestion = 0;
+        score = 0;
+        loadQuestion();
+        const quizContent = document.querySelector('.quiz-content');
+        const result = document.querySelector('.result');
+        quizContent.style.display = 'block';
+        result.style.display = 'none';
+    }
+
+    // Initial load
+    loadQuestion();
+</script>
+
+</body>
+</html>
+
+
+

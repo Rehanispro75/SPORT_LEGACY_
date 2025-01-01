@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite League, Club, and Nation Selection</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Colorful gradient */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      padding: 30px;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      background-color: white;
+      width: 100%;
+      max-width: 700px;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .container:hover {
+      transform: translateY(-10px); /* Smooth hover effect */
+    }
+
+    .section-title {
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .form-group label {
+      font-size: 18px;
+      color: #333;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .form-group select {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f8f8f8;
+      color: #333;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .form-group select:focus {
+      border-color: #ff7e5f; /* Focus transition color */
+      background-color: #fff;
+    }
+
+    .form-group select:hover {
+      background-color: #ffd1a5; /* Hover background color */
+    }
+
+    .form-group button {
+      padding: 15px 25px;
+      font-size: 18px;
+      background-color: #ff7e5f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .form-group button:hover {
+      background-color: #feb47b;
+    }
+
+    .form-group button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #ff7e5f;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Choose Your Favorite Football League, Club, and Nation</h1>
+  </header>
+
+  <div class="container">
+    <h2 class="section-title">Make Your Selections</h2>
+
+    <form id="preferences-form">
+      <!-- Favorite League Section -->
+      <div class="form-group">
+        <label for="league">Select Your Favorite League:</label>
+        <select id="league" name="league" required>
+          <option value="" disabled selected>Select a League</option>
+          <option value="epl">English Premier League</option>
+          <option value="la-liga">La Liga</option>
+          <option value="serie-a">Serie A</option>
+          <option value="bundesliga">Bundesliga</option>
+          <option value="ligue-1">Ligue 1</option>
+        </select>
+      </div>
+
+      <!-- Favorite Club Section -->
+      <div class="form-group">
+        <label for="club">Select Your Favorite Club:</label>
+        <select id="club" name="club" required disabled>
+          <option value="" disabled selected>Select a Club</option>
+        </select>
+      </div>
+
+      <!-- Favorite Nation Section -->
+      <div class="form-group">
+        <label for="nation">Select Your Favorite Nation:</label>
+        <select id="nation" name="nation" required>
+          <option value="" disabled selected>Select a Nation</option>
+          <option value="brazil">Brazil</option>
+          <option value="germany">Germany</option>
+          <option value="argentina">Argentina</option>
+          <option value="france">France</option>
+          <option value="spain">Spain</option>
+          <option value="italy">Italy</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" id="submit-btn" disabled>Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Your Football Page. All Rights Reserved. <a href="#">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    // Clubs based on the league
+    const clubsByLeague = {
+      epl: ['Manchester United', 'Liverpool', 'Chelsea', 'Arsenal', 'Manchester City'],
+      'la-liga': ['Real Madrid', 'Barcelona', 'Atletico Madrid', 'Sevilla', 'Valencia'],
+      'serie-a': ['Juventus', 'AC Milan', 'Inter Milan', 'Napoli', 'Roma'],
+      bundesliga: ['Bayern Munich', 'Borussia Dortmund', 'RB Leipzig', 'Bayer Leverkusen', 'Wolfsburg'],
+      'ligue-1': ['Paris Saint-Germain', 'Marseille', 'Lyon', 'Monaco', 'Lille']
+    };
+
+    const leagueSelect = document.getElementById('league');
+    const clubSelect = document.getElementById('club');
+    const submitButton = document.getElementById('submit-btn');
+
+    // Enable club selection when league is chosen
+    leagueSelect.addEventListener('change', function() {
+      const league = this.value;
+      if (league) {
+        const clubs = clubsByLeague[league] || [];
+        clubSelect.innerHTML = '<option value="" disabled selected>Select a Club</option>';
+        clubs.forEach(club => {
+          const option = document.createElement('option');
+          option.value = club.toLowerCase().replace(/\s+/g, '-');
+          option.textContent = club;
+          clubSelect.appendChild(option);
+        });
+        clubSelect.disabled = false;
+      } else {
+        clubSelect.disabled = true;
+      }
+      checkFormValidity();
+    });
+
+    // Enable submit button only if all selections are made
+    function checkFormValidity() {
+      const isFormValid = leagueSelect.value && clubSelect.value && document.getElementById('nation').value;
+      submitButton.disabled = !isFormValid;
+    }
+
+    // Enable submit button after selecting club and nation
+    clubSelect.addEventListener('change', checkFormValidity);
+    document.getElementById('nation').addEventListener('change', checkFormValidity);
+
+    // Handle form submission
+    document.getElementById('preferences-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const league = leagueSelect.options[leagueSelect.selectedIndex].text;
+      const club = clubSelect.options[clubSelect.selectedIndex].text;
+      const nation = document.getElementById('nation').options[document.getElementById('nation').selectedIndex].text;
+      alert(`Your preferences:\nLeague: ${league}\nClub: ${club}\nNation: ${nation}`);
+    });
+  </script>
+
+</body>
+</html>
