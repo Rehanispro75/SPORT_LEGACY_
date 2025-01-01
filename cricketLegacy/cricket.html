@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Cricket</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #000428, #004e92);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li:hover {
+            color: #0ff;
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?cricket,stadium') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            z-index: 1;
+            color: #fff;
+            text-shadow: 0 0 15px #0ff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            z-index: 1;
+        }
+
+        .hero button {
+            padding: 10px 20px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background: #0ff;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1);
+            background: #00bfff;
+        }
+
+        .stats-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .stats-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stats-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stats-card p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Futuristic Cricket</h1>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <a href="http://127.0.0.1:3000/cricketLegacy/livematches.html"><li>Live Matches</li></a>
+                <li>Stats</li>
+                <li>Teams</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Experience the Future of Cricket</h1>
+        <p>Immerse yourself in a world of advanced analytics, live AI commentary, and 3D game visuals.</p>
+        <button>Explore Now</button>
+    </div>
+
+    <section class="stats-section">
+        <h2>Real-Time Stats</h2>
+        <div class="stats-grid">
+            <div class="stats-card">
+                <h3>Top Scorer</h3>
+                <p>Virat Kohli - 120 Runs</p>
+            </div>
+            <div class="stats-card">
+                <h3>Best Bowler</h3>
+                <p>Rashid Khan - 4 Wickets</p>
+            </div>
+            <div class="stats-card">
+                <h3>Fastest Delivery</h3>
+                <p>Mitchell Starc - 155 km/h</p>
+            </div>
+            <div class="stats-card">
+                <h3>Highest Partnership</h3>
+                <p>Smith & Warner - 200 Runs</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Futuristic Cricket. All rights reserved.</p>
+    </footer>
+</body>
+</html>

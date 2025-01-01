@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Cricket Live Matches</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0e1b39, #1c2b53, #3c497f);
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        h1, p {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Match Section */
+        .live-matches {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .match {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            flex: 1 1 calc(50% - 20px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .match:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        .team-info {
+            margin-bottom: 20px;
+        }
+
+        .team-info h2 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .team-info p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .score-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .innings p {
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background-color: #333;
+            border-radius: 10px;
+            height: 8px;
+            margin-top: 10px;
+            position: relative;
+            width: 100%;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            background-color: #f0ad4e;
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .live-matches {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .match {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cricket Live Matches</h1>
+            <p>Get real-time cricket scores with an immersive futuristic experience!</p>
+        </header>
+
+        <section class="live-matches">
+            <div class="match" id="match-1">
+                <div class="team-info">
+                    <h2 id="team-1-name">Team 1</h2>
+                    <p id="team-1-score">Score: 0/0</p>
+                </div>
+                <div class="score-details">
+                    <div class="innings">
+                        <p>Overs: 0/20</p>
+                        <div class="progress-bar">
+                            <span id="overs-progress-1" style="width: 0%;"></span>
+                        </div>
+                    </div>
+                    <div class="innings">
+                        <p>Run Rate: 0.0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="match" id="match-2">
+                <div class="team-info">
+                    <h2 id="team-2-name">Team 2</h2>
+                    <p id="team-2-score">Score: 0/0</p>
+                </div>
+                <div class="score-details">
+                    <div class="innings">
+                        <p>Overs: 0/20</p>
+                        <div class="progress-bar">
+                            <span id="overs-progress-2" style="width: 0%;"></span>
+                        </div>
+                    </div>
+                    <div class="innings">
+                        <p>Run Rate: 0.0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Powered by Cricket API | © 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simulate live scores and update the UI
+        const matches = [
+            { team1: "India", team2: "Australia", score1: "0/0", score2: "0/0", overs1: "0/20", overs2: "0/20", runRate1: "0.0", runRate2: "0.0" },
+            { team1: "England", team2: "South Africa", score1: "0/0", score2: "0/0", overs1: "0/20", overs2: "0/20", runRate1: "0.0", runRate2: "0.0" }
+        ];
+
+        // Function to update match data dynamically
+        function updateMatchData(matchId, team1, team2, score1, score2, overs1, overs2, runRate1, runRate2) {
+            document.getElementById(`team-1-name`).textContent = team1;
+            document.getElementById(`team-2-name`).textContent = team2;
+            document.getElementById(`team-1-score`).textContent = `Score: ${score1}`;
+            document.getElementById(`team-2-score`).textContent = `Score: ${score2}`;
+
+            // Update overs progress bar
+            document.getElementById(`overs-progress-1`).style.width = `${(overs1 / 20) * 100}%`;
+            document.getElementById(`overs-progress-2`).style.width = `${(overs2 / 20) * 100}%`;
+
+            // Update overs and run rate
+            document.getElementById(`match-${matchId}`).querySelector(".innings:first-child p").textContent = `Overs: ${overs1}/20`;
+            document.getElementById(`match-${matchId}`).querySelector(".innings:last-child p").textContent = `Run Rate: ${runRate1}`;
+        }
+
+        // Simulate a score update every 5 seconds
+        setInterval(() => {
+            const randomMatch = Math.floor(Math.random() * 2);
+            const randomTeam = Math.floor(Math.random() * 2) + 1;
+            const score = Math.floor(Math.random() * 200);
+            const overs = (Math.random() * 20).toFixed(1);
+            const runRate = (Math.random() * 6).toFixed(1);
+            
+            if (randomTeam === 1) {
+                matches[randomMatch].score1 = `${score}/${Math.floor(Math.random() * 10)}`;
+                matches[randomMatch].overs1 = `${overs}/20`;
+                matches[randomMatch].runRate1 = runRate;
+            } else {
+                matches[randomMatch].score2 = `${score}/${Math.floor(Math.random() * 10)}`;
+                matches[randomMatch].overs2 = `${overs}/20`;
+                matches[randomMatch].runRate2 = runRate;
+            }
+
+            updateMatchData(randomMatch + 1, matches[randomMatch].team1, matches[randomMatch].team2, 
+                            matches[randomMatch].score1, matches[randomMatch].score2,
+                            matches[randomMatch].overs1, matches[randomMatch].overs2,
+                            matches[randomMatch].runRate1, matches[randomMatch].runRate2);
+        }, 5000);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football Match Results</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background */
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px;
+      font-size: 2.5rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 20px;
+    }
+
+    .match-card {
+      width: 250px;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0.95;
+    }
+
+    .match-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .team-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .score {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .match-date {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    .card-blue {
+      background-color: #4d9bff;
+    }
+
+    .card-red {
+      background-color: #ff6b6b;
+    }
+
+    .card-yellow {
+      background-color: #f9c42a;
+    }
+
+    .card-green {
+      background-color: #6dbf64;
+    }
+
+    .card-purple {
+      background-color: #9b59b6;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ff7e5f;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #feb47b;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .match-card {
+        width: 80%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Latest Football Match Results</h1>
+  </header>
+
+  <div class="container">
+    <!-- Match 1 -->
+    <div class="match-card card-blue">
+      <div class="team-name">Manchester United</div>
+      <div class="score">3 - 1</div>
+      <div class="team-name">Chelsea</div>
+      <div class="match-date">November 29, 2024</div>
+    </div>
+
+    <!-- Match 2 -->
+    <div class="match-card card-red">
+      <div class="team-name">Real Madrid</div>
+      <div class="score">2 - 2</div>
+      <div class="team-name">Barcelona</div>
+      <div class="match-date">November 29, 2024</div>
+    </div>
+
+    <!-- Match 3 -->
+    <div class="match-card card-yellow">
+      <div class="team-name">Bayern Munich</div>
+      <div class="score">4 - 0</div>
+      <div class="team-name">Borussia Dortmund</div>
+      <div class="match-date">November 29, 2024</div>
+    </div>
+
+    <!-- Match 4 -->
+    <div class="match-card card-green">
+      <div class="team-name">Paris Saint-Germain</div>
+      <div class="score">5 - 3</div>
+      <div class="team-name">Lyon</div>
+      <div class="match-date">November 28, 2024</div>
+    </div>
+
+    <!-- Match 5 -->
+    <div class="match-card card-purple">
+      <div class="team-name">AC Milan</div>
+      <div class="score">1 - 1</div>
+      <div class="team-name">Juventus</div>
+      <div class="match-date">November 28, 2024</div>
+    </div>
+
+    <!-- Match 6 -->
+    <div class="match-card card-blue">
+      <div class="team-name">Liverpool</div>
+      <div class="score">2 - 1</div>
+      <div class="team-name">Arsenal</div>
+      <div class="match-date">November 28, 2024</div>
+    </div>
+
+    <!-- Match 7 -->
+    <div class="match-card card-red">
+      <div class="team-name">Atletico Madrid</div>
+      <div class="score">3 - 0</div>
+      <div class="team-name">Valencia</div>
+      <div class="match-date">November 27, 2024</div>
+    </div>
+
+    <!-- Match 8 -->
+    <div class="match-card card-yellow">
+      <div class="team-name">Napoli</div>
+      <div class="score">2 - 2</div>
+      <div class="team-name">Roma</div>
+      <div class="match-date">November 27, 2024</div>
+    </div>
+
+    <!-- Match 9 -->
+    <div class="match-card card-green">
+      <div class="team-name">Sevilla</div>
+      <div class="score">1 - 0</div>
+      <div class="team-name">Getafe</div>
+      <div class="match-date">November 26, 2024</div>
+    </div>
+
+    <!-- Match 10 -->
+    <div class="match-card card-purple">
+      <div class="team-name">Lazio</div>
+      <div class="score">3 - 1</div>
+      <div class="team-name">Inter Milan</div>
+      <div class="match-date">November 26, 2024</div>
+    </div>
+
+    <!-- Match 11 -->
+    <div class="match-card card-blue">
+      <div class="team-name">Tottenham Hotspur</div>
+      <div class="score">4 - 3</div>
+      <div class="team-name">Everton</div>
+      <div class="match-date">November 25, 2024</div>
+    </div>
+
+    <!-- Match 12 -->
+    <div class="match-card card-red">
+      <div class="team-name">AS Monaco</div>
+      <div class="score">3 - 2</div>
+      <div class="team-name">Nice</div>
+      <div class="match-date">November 25, 2024</div>
+    </div>
+
+    <!-- Match 13 -->
+    <div class="match-card card-yellow">
+      <div class="team-name">Fiorentina</div>
+      <div class="score">2 - 2</div>
+      <div class="team-name">Torino</div>
+      <div class="match-date">November 24, 2024</div>
+    </div>
+
+    <!-- Match 14 -->
+    <div class="match-card card-green">
+      <div class="team-name">Boca Juniors</div>
+      <div class="score">1 - 0</div>
+      <div class="team-name">River Plate</div>
+      <div class="match-date">November 24, 2024</div>
+    </div>
+
+    <!-- Match 15 -->
+    <div class="match-card card-purple">
+      <div class="team-name">Santos</div>
+      <div class="score">2 - 1</div>
+      <div class="team-name">Flamengo</div>
+      <div class="match-date">November 23, 2024</div>
+    </div>
+
+    <!-- Match 16 -->
+    <div class="match-card card-blue">
+      <div class="team-name">Corinthians</div>
+      <div class="score">1 - 1</div>
+      <div class="team-name">Palmeiras</div>
+      <div class="match-date">November 23, 2024</div>
+    </div>
+
+    <!-- Match 17 -->
+    <div class="match-card card-red">
+      <div class="team-name">Manchester City</div>
+      <div class="score">5 - 2</div>
+      <div class="team-name">Leicester City</div>
+      <div class="match-date">November 22, 2024</div>
+    </div>
+
+    <!-- Match 18 -->
+    <div class="match-card card-yellow">
+      <div class="team-name">Wolverhampton Wanderers</div>
+      <div class="score">2 - 1</div>
+      <div class="team-name">Southampton</div>
+      <div class="match-date">November 22, 2024</div>
+    </div>
+
+    <!-- Match 19 -->
+    <div class="match-card card-green">
+      <div class="team-name">Villarreal</div>
+      <div class="score">3 - 1</div>
+      <div class="team-name">Real Betis</div>
+      <div class="match-date">November 21, 2024</div>
+    </div>
+
+    <!-- Match 20 -->
+    <div class="match-card card-purple">
+      <div class="team-name">Athletic Bilbao</div>
+      <div class="score">0 - 0</div>
+      <div class="team-name">Espanyol</div>
+      <div class="match-date">November 21, 2024</div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Football Results. All Rights Reserved. <a href="#">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
+
+
